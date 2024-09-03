@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      TZ: America/Sao_Paulo
+      POSTGRES_USER: report_of_use_api
+      POSTGRES_PASSWORD: report_of_use_api
+      POSTGRES_DB: report_of_use_api
+    expose:
+      - 5432
+    network_mode: host
+
+  api:
+    build: ./report_of_use_api
+    tty: true
+    stdin_open: true
+    command: bundle exec rails s -b 0.0.0.0 -p 8000
+    volumes:
+      - ./report_of_use_api:/rails
+    ports:
+      - 8000:8000
+    env_file:
+      - ./report_of_use_api/.env
+    environment:
+      RAILS_ENV: development
+    depends_on:
+      - db
+    network_mode: host
