@@ -1,12 +1,7 @@
-#! /bin/sh
+#!/bin/sh
+rm -f tmp/pids/server.pid
 
-set -e
+gem install rails
+bundle install --jobs 5 --retry 5
 
-bundle check || bundle install --jobs 5 --retry 5
-
-
-if [ -f tmp/pids/server.pid ]; then
-  rm tmp/pids/server.pid
-fi
-
-exec "$@"
+rails s -b 0.0.0.0 -p 8000

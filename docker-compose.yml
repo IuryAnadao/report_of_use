@@ -16,7 +16,7 @@ services:
     build: ./report_of_use_api
     tty: true
     stdin_open: true
-    command: bundle exec rails s -b 0.0.0.0 -p 8000
+    command: ./start_development.sh
     volumes:
       - ./report_of_use_api:/rails
     ports:
