@@ -30,7 +30,7 @@ class Api::DatabasesController < ApisController
   def destroy
     @database = Database.find(params[:id])
     @database.destroy
-    head :no_content
+    render json: { message: 'Database deleted' }, status: :ok
   end
 
   private
