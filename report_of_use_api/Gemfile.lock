@@ -220,7 +220,7 @@ DEPENDENCIES
   bootsnap
   debug
   devise (~> 4.9)
-  doorkeeper
+  doorkeeper (~> 5.7)
   pg (~> 1.1)
   puma (>= 5.0)
   rack-cors
