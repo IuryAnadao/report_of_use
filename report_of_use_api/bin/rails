@@ -1,4 +1,12 @@
 #!/usr/bin/env ruby
-APP_PATH = File.expand_path("../config/application", __dir__)
-require_relative "../config/boot"
-require "rails/commands"
+
+require 'shellwords'
+require_relative 'helpers'
+
+if running_with_docker?
+  exec "bin/api 'bin/rails #{Shellwords.join(ARGV)}'"
+else
+  APP_PATH = File.expand_path("../config/application", __dir__)
+  require_relative '../config/boot'
+  require 'rails/commands'
+end
