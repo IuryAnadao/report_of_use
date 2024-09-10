@@ -8,6 +8,10 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+if Doorkeeper::Application.count.zero?
+  Doorkeeper::Application.create!(name: 'React', redirect_uri: '', scopes: '')
+end
+
 User.first_or_create!(
   email: 'iurygomesanadao@gmail.com',
   password: '123456',

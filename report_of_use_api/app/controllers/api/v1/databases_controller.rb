@@ -1,11 +1,13 @@
-class Api::DatabasesController < ApisController
+class Api::V1::DatabasesController < ApiController
   def index
     @databases = Database.all
     render json: @databases
   end
 
   def show
-    @database = Database.find(params[:id])
+    @database = Database.find_by(id: params[:id])
+    return render json: { message: 'Database not found' } , status: :not_found unless @database
+
     render json: @database
   end
 
